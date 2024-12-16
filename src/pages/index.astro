@@ -1,11 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import ApiService from '../ApiService/ApiService'
+import DefaultHeroSection from '../components/DefaultHeroSection.astro'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const data = await ApiService.fetchHeroes('en')
+// console.log('DATA 🍔🍔', JSON.stringify(data, null, 2))
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<main class="container m-auto mt-16">
+  {
+    data?.[0]?.sections?.map((section: any) => {
+      const sectionCollection = section?.collection
+      const columnGap = section?.item?.column_gap
+      const sectionType = section?.item?.section_type
+      const sectionBgColor = section?.item?.background_color
+      return section?.item?.columns?.map((column: any) => {
+        const columnSort = column?.sort
+        const columnCollection = column?.collection
+        const columnItemWidth = column?.item?.column_width
+        const columnItemRecords = column?.item?.column_records
+        const columnItemElementCollection = columnItemRecords[0].item.element[0].collection
+        return <DefaultHeroSection heroData={columnItemRecords?.[0]} />
+      })
+    })
+  }
+
+
+  <main></main>
+</main>
