@@ -48,6 +48,40 @@ export default class ApiService {
                                         'collection',
                                         {
                                           item: [
+                                            '*',
+                                            {
+                                              section: [
+                                                '*',
+                                                {
+                                                  item: [
+                                                    '*',
+                                                    {
+                                                      column_records: [
+                                                        'id',
+                                                        'sort',
+                                                        {
+                                                          item: [
+                                                            '*',
+                                                            {
+                                                              element: [
+                                                                'collection',
+                                                                {
+                                                                  item: [
+                                                                    {
+                                                                      translations: ['*'],
+                                                                    },
+                                                                  ],
+                                                                },
+                                                              ],
+                                                            },
+                                                          ],
+                                                        },
+                                                      ],
+                                                    },
+                                                  ],
+                                                },
+                                              ],
+                                            },
                                             {
                                               translations: [
                                                 '*',
